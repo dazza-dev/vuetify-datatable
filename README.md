@@ -1,11 +1,11 @@
-# @dazza-dev/vuetify-datatable
+# @dazzadev/vuetify-datatable
 
 Reusable server-side DataTable component for Vuetify 3. Includes action buttons (view, edit, delete), configurable icons, and a built-in confirmation modal.
 
 ## Installation
 
 ```bash
-npm install @dazza-dev/vuetify-datatable
+npm install @dazzadev/vuetify-datatable
 ```
 
 ## Setup
@@ -15,7 +15,7 @@ npm install @dazza-dev/vuetify-datatable
 ```ts
 // main.ts
 import { createApp } from 'vue';
-import VuetifyDatatable from '@dazza-dev/vuetify-datatable';
+import VuetifyDatatable from '@dazzadev/vuetify-datatable';
 
 const app = createApp(App);
 app.use(VuetifyDatatable);
@@ -24,7 +24,7 @@ app.use(VuetifyDatatable);
 ### Or import individually
 
 ```ts
-import { DataTable, ConfirmationModal } from '@dazza-dev/vuetify-datatable';
+import { DataTable, ConfirmationModal } from '@dazzadev/vuetify-datatable';
 ```
 
 ## Basic Usage
@@ -78,7 +78,7 @@ Icons can be configured at 4 levels of priority (highest to lowest):
 
 ```ts
 // main.ts
-import { createDataTableConfig } from '@dazza-dev/vuetify-datatable';
+import { createDataTableConfig } from '@dazzadev/vuetify-datatable';
 import { IconEye, IconPencil, IconTrash } from '@tabler/icons-vue';
 
 app.use(createDataTableConfig({
