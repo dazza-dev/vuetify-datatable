@@ -1,6 +1,6 @@
 # @dazzadev/vuetify-datatable
 
-Reusable server-side DataTable component for Vuetify 3. Includes action buttons (view, edit, delete), configurable icons, and a built-in confirmation modal.
+Reusable server-side DataTable component for Vuetify 3. Includes action buttons (view, edit, delete), configurable icons, and a built-in delete confirmation dialog.
 
 ## Installation
 
@@ -24,7 +24,7 @@ app.use(VuetifyDatatable);
 ### Or import individually
 
 ```ts
-import { DataTable, ConfirmationModal } from "@dazzadev/vuetify-datatable";
+import { DataTable } from "@dazzadev/vuetify-datatable";
 ```
 
 ## Basic Usage
