@@ -14,8 +14,8 @@ npm install @dazzadev/vuetify-datatable
 
 ```ts
 // main.ts
-import { createApp } from 'vue';
-import VuetifyDatatable from '@dazzadev/vuetify-datatable';
+import { createApp } from "vue";
+import VuetifyDatatable from "@dazzadev/vuetify-datatable";
 
 const app = createApp(App);
 app.use(VuetifyDatatable);
@@ -24,23 +24,23 @@ app.use(VuetifyDatatable);
 ### Or import individually
 
 ```ts
-import { DataTable, ConfirmationModal } from '@dazzadev/vuetify-datatable';
+import { DataTable, ConfirmationModal } from "@dazzadev/vuetify-datatable";
 ```
 
 ## Basic Usage
 
 ```vue
 <template>
-    <DataTable
-        :headers="headers"
-        :items="items"
-        :loading="loading"
-        :total-items="totalItems"
-        :search="search"
-        @onLoadData="loadData"
-        @editItem="editItem"
-        @deleteItem="deleteItem"
-    />
+  <DataTable
+    :headers="headers"
+    :items="items"
+    :loading="loading"
+    :total-items="totalItems"
+    :search="search"
+    @onLoadData="loadData"
+    @editItem="editItem"
+    @deleteItem="deleteItem"
+  />
 </template>
 ```
 
@@ -68,9 +68,9 @@ Icons can be configured at 4 levels of priority (highest to lowest):
 
 ```vue
 <DataTable
-    view-icon="mdi-magnify"
-    edit-icon="mdi-square-edit-outline"
-    delete-icon="mdi-delete"
+  view-icon="mdi-magnify"
+  edit-icon="mdi-square-edit-outline"
+  delete-icon="mdi-delete"
 />
 ```
 
@@ -78,17 +78,19 @@ Icons can be configured at 4 levels of priority (highest to lowest):
 
 ```ts
 // main.ts
-import { createDataTableConfig } from '@dazzadev/vuetify-datatable';
-import { IconEye, IconPencil, IconTrash } from '@tabler/icons-vue';
+import { createDataTableConfig } from "@dazzadev/vuetify-datatable";
+import { IconEye, IconPencil, IconTrash } from "@tabler/icons-vue";
 
-app.use(createDataTableConfig({
+app.use(
+  createDataTableConfig({
     icons: {
-        view: IconEye,
-        edit: IconPencil,
-        delete: IconTrash
+      view: IconEye,
+      edit: IconPencil,
+      delete: IconTrash,
     },
-    iconProps: { 'stroke-width': 1.5 }
-}));
+    iconProps: { "stroke-width": 1.5 },
+  }),
+);
 ```
 
 This works with any icon library: Tabler, FontAwesome, Heroicons, or any Vue component.
@@ -103,53 +105,53 @@ If no configuration is provided, the component uses Material Design Icons (inclu
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `headers` | `TableHeader[]` | `[]` | Table column headers |
-| `items` | `T[]` | `[]` | Table row data |
-| `loading` | `boolean` | `false` | Show loading state |
-| `totalItems` | `number` | `0` | Total items for server-side pagination |
-| `itemsPerPage` | `number` | `10` | Items per page |
-| `search` | `string` | — | Search query |
-| `itemValue` | `string` | `'id'` | Unique item identifier key |
-| `tableClass` | `string` | `'border rounded-md mt-5'` | CSS class for the table |
-| `showExpand` | `boolean` | `false` | Show expandable rows |
-| `showViewButton` | `boolean` | `false` | Show view action button |
-| `showEditButton` | `boolean` | `true` | Show edit action button |
-| `showDeleteButton` | `boolean` | `true` | Show delete action button |
-| `viewButtonText` | `string` | — | View button tooltip text |
-| `editButtonText` | `string` | — | Edit button tooltip text |
-| `deleteButtonText` | `string` | — | Delete button tooltip text |
-| `deleteModalTitle` | `string` | — | Delete confirmation modal title |
-| `deleteModalMessage` | `string` | — | Delete confirmation modal message |
-| `deleteModalConfirmButtonText` | `string` | — | Confirm button text |
-| `deleteModalCancelButtonText` | `string` | — | Cancel button text |
-| `viewIcon` | `string` | — | View icon name override |
-| `editIcon` | `string` | — | Edit icon name override |
-| `deleteIcon` | `string` | — | Delete icon name override |
+| Prop                           | Type            | Default                    | Description                            |
+| ------------------------------ | --------------- | -------------------------- | -------------------------------------- |
+| `headers`                      | `TableHeader[]` | `[]`                       | Table column headers                   |
+| `items`                        | `T[]`           | `[]`                       | Table row data                         |
+| `loading`                      | `boolean`       | `false`                    | Show loading state                     |
+| `totalItems`                   | `number`        | `0`                        | Total items for server-side pagination |
+| `itemsPerPage`                 | `number`        | `10`                       | Items per page                         |
+| `search`                       | `string`        | —                          | Search query                           |
+| `itemValue`                    | `string`        | `'id'`                     | Unique item identifier key             |
+| `tableClass`                   | `string`        | `'border rounded-md mt-5'` | CSS class for the table                |
+| `showExpand`                   | `boolean`       | `false`                    | Show expandable rows                   |
+| `showViewButton`               | `boolean`       | `false`                    | Show view action button                |
+| `showEditButton`               | `boolean`       | `true`                     | Show edit action button                |
+| `showDeleteButton`             | `boolean`       | `true`                     | Show delete action button              |
+| `viewButtonText`               | `string`        | —                          | View button tooltip text               |
+| `editButtonText`               | `string`        | —                          | Edit button tooltip text               |
+| `deleteButtonText`             | `string`        | —                          | Delete button tooltip text             |
+| `deleteModalTitle`             | `string`        | —                          | Delete confirmation modal title        |
+| `deleteModalMessage`           | `string`        | —                          | Delete confirmation modal message      |
+| `deleteModalConfirmButtonText` | `string`        | —                          | Confirm button text                    |
+| `deleteModalCancelButtonText`  | `string`        | —                          | Cancel button text                     |
+| `viewIcon`                     | `string`        | —                          | View icon name override                |
+| `editIcon`                     | `string`        | —                          | Edit icon name override                |
+| `deleteIcon`                   | `string`        | —                          | Delete icon name override              |
 
 ## Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event        | Payload          | Description                                      |
+| ------------ | ---------------- | ------------------------------------------------ |
 | `onLoadData` | `LoadDataParams` | Triggered on pagination, sort, or search changes |
-| `editItem` | `T` | Triggered when edit button is clicked |
-| `deleteItem` | `T` | Triggered when delete is confirmed |
-| `viewItem` | `T` | Triggered when view button is clicked |
+| `editItem`   | `T`              | Triggered when edit button is clicked            |
+| `deleteItem` | `T`              | Triggered when delete is confirmed               |
+| `viewItem`   | `T`              | Triggered when view button is clicked            |
 
 ## Slots
 
-| Slot | Description |
-|------|-------------|
-| `item.{key}` | Custom render for any column by header key |
-| `expanded-row` | Content for expandable rows |
-| `item.data-table-expand` | Custom expand toggle button |
-| `before-actions` | Content before action buttons |
-| `after-actions` | Content after action buttons |
-| `view-icon` | Custom view icon |
-| `edit-icon` | Custom edit icon |
-| `delete-icon` | Custom delete icon |
-| `item.tfoot` | Table footer content |
+| Slot                     | Description                                |
+| ------------------------ | ------------------------------------------ |
+| `item.{key}`             | Custom render for any column by header key |
+| `expanded-row`           | Content for expandable rows                |
+| `item.data-table-expand` | Custom expand toggle button                |
+| `before-actions`         | Content before action buttons              |
+| `after-actions`          | Content after action buttons               |
+| `view-icon`              | Custom view icon                           |
+| `edit-icon`              | Custom edit icon                           |
+| `delete-icon`            | Custom delete icon                         |
+| `item.tfoot`             | Table footer content                       |
 
 ## Peer Dependencies
 
