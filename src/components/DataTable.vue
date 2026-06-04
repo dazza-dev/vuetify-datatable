@@ -30,7 +30,7 @@
             <slot name="before-actions" :item="item"></slot>
             <v-tooltip :text="viewButtonText" v-if="showViewButton">
                 <template v-slot:activator="{ props }">
-                    <v-btn icon flat @click="viewItem(item)" v-bind="props">
+                    <v-btn icon flat @click="viewItem(item)" v-bind="props" :disabled="disableView?.(item)">
                         <slot name="view-icon">
                             <component v-if="isIconComponent(resolvedViewIcon)" :is="resolvedViewIcon" :size="20" class="text-info" v-bind="globalIconProps" />
                             <v-icon v-else size="20" class="text-info">{{ resolvedViewIcon }}</v-icon>
@@ -40,7 +40,7 @@
             </v-tooltip>
             <v-tooltip :text="editButtonText" v-if="showEditButton">
                 <template v-slot:activator="{ props }">
-                    <v-btn icon flat @click="editItem(item)" v-bind="props">
+                    <v-btn icon flat @click="editItem(item)" v-bind="props" :disabled="disableEdit?.(item)">
                         <slot name="edit-icon">
                             <component v-if="isIconComponent(resolvedEditIcon)" :is="resolvedEditIcon" :size="20" class="text-primary" v-bind="globalIconProps" />
                             <v-icon v-else size="20" class="text-primary">{{ resolvedEditIcon }}</v-icon>
@@ -50,7 +50,7 @@
             </v-tooltip>
             <v-tooltip :text="deleteButtonText" v-if="showDeleteButton">
                 <template v-slot:activator="{ props }">
-                    <v-btn icon flat @click="openDeleteModal(item)" v-bind="props">
+                    <v-btn icon flat @click="openDeleteModal(item)" v-bind="props" :disabled="disableDelete?.(item)">
                         <slot name="delete-icon">
                             <component v-if="isIconComponent(resolvedDeleteIcon)" :is="resolvedDeleteIcon" :size="20" class="text-error" v-bind="globalIconProps" />
                             <v-icon v-else size="20" class="text-error">{{ resolvedDeleteIcon }}</v-icon>
@@ -110,6 +110,9 @@ const props = withDefaults(
         viewIcon?: string;
         editIcon?: string;
         deleteIcon?: string;
+        disableView?: (item: T) => boolean;
+        disableEdit?: (item: T) => boolean;
+        disableDelete?: (item: T) => boolean;
     }>(),
     {
         tableClass: 'border rounded-md mt-5',

@@ -129,6 +129,9 @@ If no configuration is provided, the component uses Material Design Icons (inclu
 | `viewIcon`                     | `string`        | —                          | View icon name override                |
 | `editIcon`                     | `string`        | —                          | Edit icon name override                |
 | `deleteIcon`                   | `string`        | —                          | Delete icon name override              |
+| `disableView`                  | `(item: T) => boolean` | —                   | Per-row predicate: disable the view button when it returns `true`   |
+| `disableEdit`                  | `(item: T) => boolean` | —                   | Per-row predicate: disable the edit button when it returns `true`   |
+| `disableDelete`                | `(item: T) => boolean` | —                   | Per-row predicate: disable the delete button when it returns `true` |
 
 ## Events
 
