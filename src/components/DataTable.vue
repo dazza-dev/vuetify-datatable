@@ -11,7 +11,7 @@
         v-model:page="currentPage"
         :item-value="itemValue"
         :show-expand="showExpand"
-        :class="tableClass"
+        :class="effectiveTableClass"
     >
         <template v-for="slot in headerSlots" :key="slot.key" v-slot:[`item.${slot.key}`]="{ item }">
             <slot :name="`item.${slot.key}`" :item="item">{{ (item as Record<string, unknown>)[slot.key] }}</slot>
@@ -115,7 +115,6 @@ const props = withDefaults(
         disableDelete?: (item: T) => boolean;
     }>(),
     {
-        tableClass: 'border rounded-md mt-5',
         headers: () => [],
         items: () => [] as T[],
         loading: false,
@@ -140,6 +139,7 @@ const resolvedViewIcon = computed<string | Component>(() => props.viewIcon ?? gl
 const resolvedEditIcon = computed<string | Component>(() => props.editIcon ?? globalConfig.icons?.edit ?? 'mdi-pencil-outline');
 const resolvedDeleteIcon = computed<string | Component>(() => props.deleteIcon ?? globalConfig.icons?.delete ?? 'mdi-trash-can-outline');
 const globalIconProps = computed(() => globalConfig.iconProps ?? {});
+const effectiveTableClass = computed(() => props.tableClass ?? globalConfig.tableClass ?? 'border rounded-md');
 
 function isIconComponent(icon: string | Component): icon is Component {
     return typeof icon !== 'string';

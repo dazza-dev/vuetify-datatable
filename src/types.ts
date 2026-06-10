@@ -22,6 +22,7 @@ export interface DataTableIconConfig {
 export interface DataTableConfig {
   icons?: DataTableIconConfig;
   iconProps?: Record<string, unknown>;
+  tableClass?: string;
 }
 
 export interface LoadDataParams {
