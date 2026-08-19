@@ -6,7 +6,6 @@
         :items-length="totalItems"
         v-model:items-per-page="localItemsPerPage"
         :search="search"
-        @search="updateSearch"
         v-model:sort-by="sortBy"
         v-model:page="currentPage"
         :item-value="itemValue"
@@ -226,12 +225,9 @@ function requestLoadDataForSearch(): void {
 // Debounced handler for search updates (400ms)
 const debouncedRequestLoadDataForSearch = debounce(requestLoadDataForSearch, 400);
 
-// Called by v-data-table-server @search event
-const updateSearch = (): void => {
-    debouncedRequestLoadDataForSearch();
-};
-
-// Watch search
+// La recarga por busqueda la dispara este watcher, no un evento del data table:
+// v-data-table-server expone `search` solo como prop y no emite ningun evento al cambiar,
+// ni en Vuetify 3 ni en 4.
 watch(
     () => props.search,
     (newValue, oldValue) => {

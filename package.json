@@ -1,7 +1,7 @@
 {
   "name": "@dazzadev/vuetify-datatable",
-  "version": "1.0.4",
-  "description": "Reusable server-side DataTable component for Vuetify 3",
+  "version": "1.0.5",
+  "description": "Reusable server-side DataTable component for Vuetify 3 and 4",
   "type": "module",
   "main": "./dist/vuetify-datatable.umd.cjs",
   "module": "./dist/vuetify-datatable.js",
@@ -22,7 +22,7 @@
   },
   "peerDependencies": {
     "vue": "^3.3.0",
-    "vuetify": "^3.0.0"
+    "vuetify": "^3.0.0 || ^4.0.0"
   },
   "dependencies": {
     "debounce": "^2.0.0"
@@ -35,7 +35,7 @@
     "vite-plugin-dts": "^4.0.0",
     "vue": "^3.5.0",
     "vue-tsc": "^2.0.0",
-    "vuetify": "^3.7.0"
+    "vuetify": "^4.0.0"
   },
   "license": "MIT"
 }

@@ -1,6 +1,6 @@
 # @dazzadev/vuetify-datatable
 
-Reusable server-side DataTable component for Vuetify 3. Includes action buttons (view, edit, delete), configurable icons, and a built-in delete confirmation dialog.
+Reusable server-side DataTable component for Vuetify 3 and 4. Includes action buttons (view, edit, delete), configurable icons, and a built-in delete confirmation dialog.
 
 ## Installation
 
@@ -159,7 +159,10 @@ If no configuration is provided, the component uses Material Design Icons (inclu
 ## Peer Dependencies
 
 - `vue` >= 3.3
-- `vuetify` >= 3.0
+- `vuetify` 3.x or 4.x
+
+The component only uses the `v-data-table-server` API that is common to both major
+versions, so a single build works with either.
 
 ## License
 
