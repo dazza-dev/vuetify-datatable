@@ -44,6 +44,35 @@ import { DataTable } from "@dazzadev/vuetify-datatable";
 </template>
 ```
 
+## Row Selection
+
+Set `showSelect` and bind `v-model` to hold the selected keys. **The key comes from `itemValue`**,
+so point it at whatever your bulk endpoint expects — not necessarily `id`.
+
+```vue
+<DataTable
+    v-model="selected"
+    :headers="headers"
+    :items="items"
+    :totalItems="totalItems"
+    item-value="uuid"
+    show-select
+    @onLoadData="loadData"
+>
+    <template #selection-actions="{ count, clear }">
+        <div v-if="count" class="d-flex align-center ga-2 pa-2">
+            <span>{{ count }} selected</span>
+            <v-btn size="small" @click="applyToSelection">Apply</v-btn>
+            <v-btn size="small" variant="text" @click="clear">Clear</v-btn>
+        </div>
+    </template>
+</DataTable>
+```
+
+`selectStrategy` decides what the header checkbox does: `page` marks the current page only, `all`
+marks every loaded row, `single` allows one row at a time. With server-side pagination `page` is
+usually what you want — the table only holds the rows it has fetched.
+
 ## Icon Configuration
 
 Icons can be configured at 4 levels of priority (highest to lowest):
@@ -116,6 +145,9 @@ If no configuration is provided, the component uses Material Design Icons (inclu
 | `itemValue`                    | `string`        | `'id'`                     | Unique item identifier key             |
 | `tableClass`                   | `string`        | `'border rounded-md mt-5'` | CSS class for the table                |
 | `showExpand`                   | `boolean`       | `false`                    | Show expandable rows                   |
+| `showSelect`                   | `boolean`       | `false`                    | Show a checkbox column for row selection |
+| `selectStrategy`               | `'page' \| 'all' \| 'single'` | `'page'`       | How the header checkbox selects rows   |
+| `modelValue`                   | `(string \| number)[]` | `[]`               | Selected keys, taken from `itemValue`. Use with `v-model` |
 | `showViewButton`               | `boolean`       | `false`                    | Show view action button                |
 | `showEditButton`               | `boolean`       | `true`                     | Show edit action button                |
 | `showDeleteButton`             | `boolean`       | `true`                     | Show delete action button              |
@@ -141,6 +173,7 @@ If no configuration is provided, the component uses Material Design Icons (inclu
 | `editItem`   | `T`              | Triggered when edit button is clicked            |
 | `deleteItem` | `T`              | Triggered when delete is confirmed               |
 | `viewItem`   | `T`              | Triggered when view button is clicked            |
+| `update:modelValue` | `(string \| number)[]` | Triggered when the selection changes    |
 
 ## Slots
 
@@ -155,6 +188,7 @@ If no configuration is provided, the component uses Material Design Icons (inclu
 | `edit-icon`              | Custom edit icon                           |
 | `delete-icon`            | Custom delete icon                         |
 | `item.tfoot`             | Table footer content                       |
+| `selection-actions`      | Bar above the table, for bulk actions. Only rendered when `showSelect`. Receives `{ selected, count, clear }` |
 
 ## Peer Dependencies
 

@@ -10,8 +10,14 @@
         v-model:page="currentPage"
         :item-value="itemValue"
         :show-expand="showExpand"
+        :show-select="showSelect"
+        :select-strategy="selectStrategy"
+        v-model="selected"
         :class="effectiveTableClass"
     >
+        <template v-if="showSelect" v-slot:top>
+            <slot name="selection-actions" :selected="selected" :count="selected.length" :clear="clearSelection"></slot>
+        </template>
         <template v-for="slot in headerSlots" :key="slot.key" v-slot:[`item.${slot.key}`]="{ item }">
             <slot :name="`item.${slot.key}`" :item="item">{{ (item as Record<string, unknown>)[slot.key] }}</slot>
         </template>
@@ -96,6 +102,9 @@ const props = withDefaults(
         itemsPerPage?: number;
         search?: string;
         showExpand?: boolean;
+        showSelect?: boolean;
+        selectStrategy?: 'page' | 'all' | 'single';
+        modelValue?: (string | number)[];
         showEditButton?: boolean;
         showDeleteButton?: boolean;
         showViewButton?: boolean;
@@ -121,6 +130,9 @@ const props = withDefaults(
         totalItems: 0,
         itemsPerPage: 10,
         showExpand: false,
+        showSelect: false,
+        selectStrategy: 'page',
+        modelValue: () => [],
         showEditButton: true,
         showDeleteButton: true,
         showViewButton: false
@@ -128,7 +140,7 @@ const props = withDefaults(
 );
 
 // Emits
-const emit = defineEmits(['onLoadData', 'editItem', 'deleteItem', 'viewItem']);
+const emit = defineEmits(['onLoadData', 'editItem', 'deleteItem', 'viewItem', 'update:modelValue']);
 
 // Global Config (provide/inject)
 const globalConfig = inject<DataTableConfig>(DATA_TABLE_CONFIG_KEY, { icons: {} });
@@ -142,6 +154,16 @@ const effectiveTableClass = computed(() => props.tableClass ?? globalConfig.tabl
 
 function isIconComponent(icon: string | Component): icon is Component {
     return typeof icon !== 'string';
+}
+
+// Selection (v-model of the keys given by `itemValue`)
+const selected = computed<(string | number)[]>({
+    get: () => props.modelValue,
+    set: (value) => emit('update:modelValue', value)
+});
+
+function clearSelection(): void {
+    emit('update:modelValue', []);
 }
 
 // Refs
