@@ -1,6 +1,6 @@
 {
   "name": "@dazzadev/vuetify-datatable",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Reusable server-side DataTable component for Vuetify 3 and 4",
   "type": "module",
   "main": "./dist/vuetify-datatable.umd.cjs",
